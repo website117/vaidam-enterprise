@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vaidam Enterprise – Pure. Natural. Ayurvedic.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #2d6a4f;
+      --green-light: #52b788;
+      --green-pale: #d8f3dc;
+      --gold: #b5883e;
+      --gold-light: #e9c46a;
+      --cream: #fdf8f0;
+      --brown: #6b4c2a;
+      --dark: #1a1a1a;
+      --text: #3a3a3a;
+      --muted: #7a7a7a;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ───── NAVBAR ───── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,248,240,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(181,136,62,0.2);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-circle {
+      width: 42px; height: 42px;
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; font-weight: 700;
+      color: var(--green);
+      letter-spacing: -1px;
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .nav-brand span { color: var(--green); font-size: 11px; font-weight: 400; display: block; letter-spacing: 3px; text-transform: uppercase; }
+
+    nav ul {
+      display: flex; gap: 32px; list-style: none;
+    }
+    nav ul a {
+      text-decoration: none; color: var(--text);
+      font-size: 14px; font-weight: 500; letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--green); }
+
+    .nav-cta {
+      background: var(--green);
+      color: white !important;
+      padding: 9px 20px;
+      border-radius: 24px;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--green-light) !important; color: white !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--dark); border-radius: 2px; transition: all 0.3s; }
+
+    /* ───── HERO ───── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f0faf4 0%, var(--cream) 50%, #fef3e2 100%);
+      display: flex; align-items: center;
+      padding: 100px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(82,183,136,0.12), transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(181,136,62,0.1), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      position: relative; z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-pale);
+      border: 1px solid rgba(45,106,79,0.3);
+      padding: 6px 16px; border-radius: 24px;
+      font-size: 12px; font-weight: 600; color: var(--green);
+      letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-tag::before { content: '🌿'; font-size: 14px; }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 5vw, 68px);
+      font-weight: 700; line-height: 1.1;
+      color: var(--dark); margin-bottom: 20px;
+    }
+    .hero h1 em { color: var(--green); font-style: italic; }
+
+    .hero-sub {
+      font-size: 16px; line-height: 1.7; color: var(--muted);
+      margin-bottom: 36px; max-width: 440px;
+    }
+
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--green);
+      color: white; border: none; cursor: pointer;
+      padding: 14px 32px; border-radius: 32px;
+      font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,106,79,0.3); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--green); border: 2px solid var(--green);
+      padding: 12px 28px; border-radius: 32px;
+      font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.3s; cursor: pointer;
+    }
+    .btn-outline:hover { background: var(--green); color: white; }
+
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+
+    .hero-badge-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+
+    .hero-badge {
+      background: white;
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .hero-badge:hover { transform: translateY(-4px); }
+    .hero-badge:nth-child(2) { margin-top: 24px; }
+    .hero-badge:nth-child(4) { margin-top: 24px; }
+
+    .hero-badge-icon { font-size: 32px; margin-bottom: 10px; }
+    .hero-badge-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .hero-badge-sub { font-size: 12px; color: var(--muted); }
+
+    /* ───── TRUST BAR ───── */
+    .trust-bar {
+      background: var(--green);
+      padding: 18px 5%;
+      display: flex; justify-content: center; align-items: center;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      color: white; font-size: 14px; font-weight: 500;
+    }
+    .trust-item span:first-child { font-size: 20px; }
+
+    /* ───── SECTION COMMON ───── */
+    section { padding: 80px 5%; }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--green);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700; color: var(--dark);
+      line-height: 1.15; margin-bottom: 16px;
+    }
+    .section-sub { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 520px; }
+
+    /* ───── PRODUCTS ───── */
+    #products { background: white; }
+
+    .products-header { text-align: center; margin-bottom: 60px; }
+    .products-header .section-sub { margin: 0 auto; }
+
+    .products-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    }
+
+    .product-card {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.13); }
+
+    .product-card-top {
+      padding: 40px 36px 32px;
+      position: relative;
+    }
+    .product-card.ghee .product-card-top { background: linear-gradient(135deg, #fef9f0, #fef3dc); }
+    .product-card.greens .product-card-top { background: linear-gradient(135deg, #f0faf4, #e8f5e9); }
+
+    .product-badge {
+      position: absolute; top: 20px; right: 20px;
+      background: var(--green); color: white;
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      padding: 5px 12px; border-radius: 12px;
+      text-transform: uppercase;
+    }
+    .product-card.ghee .product-badge { background: var(--gold); }
+
+    .product-emoji { font-size: 64px; margin-bottom: 20px; display: block; }
+
+    .product-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 700; color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .product-tagline { font-size: 13px; color: var(--muted); margin-bottom: 20px; font-style: italic; }
+
+    .product-features { list-style: none; margin-bottom: 24px; }
+    .product-features li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: var(--text);
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .product-features li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 14px; flex-shrink: 0; }
+
+    .product-card-bottom {
+      padding: 24px 36px;
+      background: white;
+    }
+
+    .order-btn {
+      width: 100%;
+      background: var(--green);
+      color: white; border: none; cursor: pointer;
+      padding: 15px; border-radius: 14px;
+      font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: all 0.3s;
+    }
+    .order-btn:hover { background: var(--green-light); transform: scale(1.02); }
+    .product-card.ghee .order-btn { background: var(--gold); }
+    .product-card.ghee .order-btn:hover { background: var(--gold-light); color: var(--dark); }
+
+    /* ───── WHY VAIDAM ───── */
+    #why { background: var(--cream); }
+    .why-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+    .why-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .why-card {
+      background: white; border-radius: 20px;
+      padding: 28px 22px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .why-card-icon { font-size: 28px; margin-bottom: 12px; }
+    .why-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .why-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ───── INGREDIENTS (Superblend) ───── */
+    #ingredients { background: white; }
+    .ing-header { text-align: center; margin-bottom: 50px; }
+    .ing-header .section-sub { margin: 0 auto; }
+
+    .ing-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .ing-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--cream); border-radius: 16px;
+      padding: 20px 18px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .ing-item:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+    .ing-icon { font-size: 28px; flex-shrink: 0; }
+    .ing-name { font-weight: 600; color: var(--dark); font-size: 14px; margin-bottom: 3px; }
+    .ing-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* ───── TESTIMONIALS ───── */
+    #testimonials { background: linear-gradient(135deg, var(--green) 0%, #1b4332 100%); }
+    #testimonials .section-label { color: var(--green-light); }
+    #testimonials .section-title { color: white; }
+
+    .testi-grid {
+      max-width: 1100px; margin: 40px auto 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .testi-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px; padding: 28px 24px;
+    }
+    .testi-stars { color: var(--gold-light); font-size: 16px; margin-bottom: 14px; letter-spacing: 2px; }
+    .testi-text { color: rgba(255,255,255,0.9); font-size: 14px; line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--green-light);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: white; font-size: 16px;
+    }
+    .testi-name { font-weight: 600; color: white; font-size: 14px; }
+    .testi-loc { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+    /* ───── CONTACT ───── */
+    #contact { background: var(--cream); }
+    .contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+    .contact-inner .section-sub { margin: 0 auto 40px; }
+
+    .contact-cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .contact-card {
+      background: white; border-radius: 20px;
+      padding: 28px 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      display: flex; align-items: center; gap: 16px;
+      text-decoration: none; color: var(--text);
+      transition: all 0.3s;
+      flex: 1; min-width: 200px;
+    }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); }
+    .contact-card-icon { font-size: 32px; }
+    .contact-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .contact-val { font-weight: 600; color: var(--dark); font-size: 15px; }
+
+    /* ───── FOOTER ───── */
+    footer {
+      background: var(--dark);
+      padding: 40px 5%;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px; font-weight: 700; color: white;
+      margin-bottom: 8px;
+    }
+    .footer-logo span { color: var(--green-light); }
+    .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--green-light); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* ───── ORDER MODAL ───── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: white; border-radius: 28px;
+      width: 100%; max-width: 520px;
+      max-height: 92vh; overflow-y: auto;
+      padding: 40px 36px;
+      position: relative;
+      animation: slideUp 0.35s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    .modal-close {
+      position: absolute; top: 18px; right: 20px;
+      background: #f5f5f5; border: none; cursor: pointer;
+      width: 34px; height: 34px; border-radius: 50%;
+      font-size: 18px; color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: #eee; }
+
+    .modal-product-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-pale); color: var(--green);
+      font-size: 12px; font-weight: 600; letter-spacing: 1px;
+      padding: 5px 14px; border-radius: 12px; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .modal h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px; font-weight: 700; color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .modal-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 13px; font-weight: 600;
+      color: var(--dark); margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 14px; font-family: 'DM Sans', sans-serif;
+      color: var(--dark);
+      background: #fafafa;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green);
+      background: white;
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    .form-note {
+      background: #f0faf4; border: 1px solid rgba(45,106,79,0.2);
+      border-radius: 12px; padding: 14px 16px;
+      font-size: 13px; color: var(--green);
+      margin-bottom: 20px;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+
+    .submit-btn {
+      width: 100%; background: #25D366;
+      color: white; border: none; cursor: pointer;
+      padding: 16px; border-radius: 14px;
+      font-size: 16px; font-weight: 700; font-family: 'DM Sans', sans-serif;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      transition: all 0.3s;
+    }
+    .submit-btn:hover { background: #128C7E; transform: scale(1.02); }
+    .submit-btn svg { width: 22px; height: 22px; fill: white; }
+
+    /* ───── RESPONSIVE ───── */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-sub { margin: 0 auto 36px; }
+      .hero-btns { justify-content: center; }
+      .hero-visual { margin-top: 40px; }
+      .products-grid { grid-template-columns: 1fr; }
+      .why-inner { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .ing-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      .hamburger { display: flex; }
+      .trust-bar { gap: 20px; }
+      .hero-badge-grid { grid-template-columns: 1fr 1fr; }
+      .ing-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .modal { padding: 32px 24px; }
+      .why-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-circle">VE</div>
+    <div class="nav-brand">Vaidam<span>Enterprise</span></div>
+  </a>
+  <ul>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#ingredients">Ingredients</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#products" class="nav-cta">Order Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">Ahmedabad, Gujarat, India</div>
+      <h1>Pure Nature.<br><em>Crafted</em> by<br>Tradition.</h1>
+      <p class="hero-sub">From the heart of Gujarat — Vaidam brings you ancient wellness rooted in Ayurveda. Pure A2 Gir Cow Ghee & Heritage Green Superblend. No shortcuts. No compromise.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-primary">🛒 Shop Now</a>
+        <a href="#why" class="btn-outline">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-badge-grid">
+        <div class="hero-badge">
+          <div class="hero-badge-icon">🐄</div>
+          <div class="hero-badge-title">Gir Cow</div>
+          <div class="hero-badge-sub">Pure A2 Milk</div>
+        </div>
+        <div class="hero-badge">
+  div class="hero-badge-icon">🏺</div>
+          <div class="hero-badge-title">Bilona</div>
+          <div class="hero-badge-sub">Traditional Method</div>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-icon">🧪</div>
+          <div class="hero-badge-title">No Chemicals</div>
+          <div class="hero-badge-sub">No Preservatives</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span>✅</span><span>100% Pure & Natural</span></div>
+  <div class="trust-item"><span>🌿</span><span>Ayurvedic Certified</span></div>
+  <div class="trust-item"><span>🚫</span><span>No Additives</span></div>
+  <div class="trust-item"><span>📦</span><span>Direct to Your Door</span></div>
+  <div class="trust-item"><span>💬</span><span>WhatsApp Support</span></div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="products-header">
+    <div class="section-label">Our Products</div>
+    <div class="section-title">Two Products,<br>One Promise — Purity</div>
+    <p class="section-sub">Crafted for every Indian family who values health, heritage & honesty.</p>
+  </div>
+
+  <div class="products-grid">
+    <!-- GHEE -->
+    <div class="product-card ghee">
+      <div class="product-card-top">
+        <div class="product-badge">Bestseller</div>
+        <span class="product-emoji">🫙</span>
+        <h3>Vaidam Gir Cow Ghee</h3>
+        <p class="product-tagline">"Crafted by Culture, Completed by Purity"</p>
+        <ul class="product-features">
+          <li>Pure A2 Gir Cow Milk</li>
+          <li>Traditional Bilona Method</li>
+          <li>No Preservatives</li>
+          <li>No Chemicals or Additives</li>
+          <li>Rich in Nutrients & Omega Fatty Acids</li>
+          <li>Suitable for Cooking & Ayurvedic Use</li>
+        </ul>
+      </div>
+      <div class="product-card-bottom">
+        <button class="order-btn" onclick="openModal('Vaidam Gir Cow Ghee')">
+          🛒 Order Now
+        </button>
+      </div>
+    </div>
+
+    <!-- GREENS -->
+    <div class="product-card greens">
+      <div class="product-card-top">
+        <div class="product-badge">New Launch</div>
+        <span class="product-emoji">🍵</span>
+        <h3>Heritage Green Superblend</h3>
+        <p class="product-tagline">"Pure Greens. Clean Nutrition. Daily Vitality in Every Sip."</p>
+        <ul class="product-features">
+          <li>11 Ayurvedic Superfoods</li>
+          <li>Japanese Matcha included</li>
+          <li>Immunity & Hemoglobin Booster</li>
+          <li>Natural Detox & Digestion Support</li>
+          <li>100% Ayurvedic – No Chemicals</li>
+          <li>Spirulina, Moringa, Amla, Giloy & more</li>
+        </ul>
+      </div>
+      <div class="product-card-bottom">
+        <button class="order-btn" onclick="openModal('Heritage Green Superblend with Matcha')">
+          🛒 Order Now
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VAIDAM -->
+<section id="why">
+  <div class="why-inner">
+    <div>
+      <div class="section-label">Why Choose Us</div>
+      <div class="section-title">Rooted in Tradition.<br><em style="color:var(--green);font-style:italic">Made for Today.</em></div>
+      <p class="section-sub" style="margin-bottom:0">At Vaidam, we believe your food is your medicine. Every product is made with the same care and reverence as it was done for generations — because you deserve nothing less.</p>
+    </div>
+    <div class="why-cards">
+      <div class="why-card">
+        <div class="why-card-icon">🐄</div>
+        <h4>Authentic A2 Milk</h4>
+        <p>Sourced only from pure Gir cow breed. No mixed milk, no compromise on quality.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🏺</div>
+        <h4>Bilona Method</h4>
+        <p>Ancient hand-churning tradition that preserves natural nutrients and flavour.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🌿</div>
+        <h4>Zero Chemicals</h4>
+        <p>No preservatives, no artificial colours, no chemicals — ever. Just purity.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">❤️</div>
+        <h4>Family Wellness</h4>
+        <p>From children to elders, pregnant mothers to athletes — made for every family member.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section id="ingredients">
+  <div class="ing-header">
+    <div class="section-label">Heritage Green Superblend</div>
+    <div class="section-title">11 Powerful Natural Ingredients</div>
+    <p class="section-sub">A unique union of 11 powerful natural elements — 100% pure, Ayurvedic, no chemicals.</p>
+  </div>
+  <div class="ing-grid">
+    <div class="ing-item">
+      <div class="ing-icon">🌀</div>
+      <div>
+        <div class="ing-name">Spirulina</div>
+        <div class="ing-desc">Rich source of protein & amino acids. Naturally boosts body energy.</div>
+      </div>
+    </div>
+    <div class="ing-item">
+      <div class="ing-icon">🌱</div>
+      <div>
+        <div class="ing-name">Moringa (Shevgao)</div>
+        <div class="ing-desc">Calcium & iron-rich. Strengthens bones and boosts blood health.</div>
+      </div>
+    </div>
+    <div class="ing-item">
+      <div class="ing-icon">🌾</div>
+      <div>
+        <div class="ing-name">Alfalfa (Rajko)</div>
+        <div class="ing-desc">Natural body detox through vitamins and minerals.</div>
+      </div>
+    </div>
+    <div class="ing-item">
+      <div class="ing-icon">🍵</div>
+      <div>
+        <div class="ing-name">Matcha (Japanese)</div>
+        <div class="ing-desc">Supports metabolism and sustained daily energy.</div>
+      </div>
+    </div>
+    <div class="ing-item">
+      <div class="ing-icon">🎋</div>
+      <div>
+        <div class="ing-name">Giloy (Galo)</div>
+        <div class="ing-desc">The immunity-boosting amrit of Ayurveda.</div>
+      </div>
+    </div>
+    <div class="ing-item">
+      <div class="ing-icon">🌿</div>
+      <div>
+        <div class="ing-name">Gokhru</div>
+        <div class="ing-desc">Supports metabolism and helps maintain body weight.</div>
+      </div>
+    </div>
+    <div class="ing-item">
+      <div class="ing-icon">🍈</div>
+      <div>
+        <div class="ing-name">Amla</div>
+        <div class="ing-desc">Vitamin C powerhouse — great for digestion & skin.</div>
+      </div>
+    </div>
+    <div class="ing-item">
+      <div class="ing-icon">🟫</div>
+      <div>
+        <div class="ing-name">Mandur Bhasma</div>
+        <div class="ing-desc">Natural iron source for hemoglobin enhancement.</div>
+      </div>
+    </div>
+    <div class="ing-item">
+      <div class="ing-icon">🌰</div>
+      <div>
+        <div class="ing-name">Variyali (Fennel)</div>
+        <div class="ing-desc">Soothes stomach, relieves gas and acidity naturally.</div>
+      </div>
+    </div>
+    <div class="ing-item">
+      <div class="ing-icon">🫘</div>
+      <div>
+        <div class="ing-name">Baheda & Harde</div>
+        <div class="ing-desc">Cleanses intestines and strengthens the digestive system.</div>
+      </div>
+    </div>
+    <div class="ing-item">
+      <div class="ing-icon">✨</div>
+      <div>
+        <div class="ing-name">+ More Superfoods</div>
+        <div class="ing-desc">A complete blend crafted for holistic daily wellness.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-label">Customer Love</div>
+    <div class="section-title">What Our Customers Say</div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Vaidam Ghee is absolutely pure — you can smell the difference the moment you open the jar. My whole family has switched and we feel amazing."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div>
+            <div class="testi-name">Priya Shah</div>
+            <div class="testi-loc">Ahmedabad, Gujarat</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The Heritage Green Superblend has changed my mornings. More energy, better digestion and I love that it's completely natural with no chemicals."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div>
+            <div class="testi-name">Rajesh Patel</div>
+            <div class="testi-loc">Surat, Gujarat</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I was looking for authentic Bilona ghee for so long. Vaidam delivers exactly what they promise — traditional, pure and absolutely delicious!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">Meera Joshi</div>
+            <div class="testi-loc">Vadodara, Gujarat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label">Get in Touch</div>
+    <div class="section-title">We're Here for You</div>
+    <p class="section-sub">Have questions? Reach out to us anytime on WhatsApp or email. We love hearing from our customers!</p>
+    <div class="contact-cards">
+      <a href="https://wa.me/917600634798" target="_blank" class="contact-card">
+        <div class="contact-card-icon">💬</div>
+        <div>
+          <div class="contact-label">WhatsApp (Ghee)</div>
+          <div class="contact-val">+91 76006 34798</div>
+        </div>
+      </a>
+      <a href="https://wa.me/919909361172" target="_blank" class="contact-card">
+        <div class="contact-card-icon">💬</div>
+        <div>
+          <div class="contact-label">WhatsApp (Superblend)</div>
+          <div class="contact-val">+91 99093 61172</div>
+        </div>
+      </a>
+      <a href="mailto:vaidam.enterprise@gmail.com" class="contact-card">
+        <div class="contact-card-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">vaidam.enterprise@gmail.com</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Vaidam <span>Enterprise</span></div>
+  <div class="footer-tagline">Pure. Natural. Ayurvedic. — Ahmedabad, Gujarat, India</div>
+  <div class="footer-links">
+    <a href="#products">Products</a>
+    <a href="#why">About</a>
+    <a href="#ingredients">Ingredients</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 Vaidam Enterprise. All rights reserved. | vaidam.enterprise@gmail.com</div>
+</footer>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-product-badge" id="modalBadge">🛒 Order</div>
+    <h2>Place Your Order</h2>
+    <p class="modal-sub" id="modalProduct">Fill in your details — your order will be sent to our WhatsApp!</p>
+
+    <div class="form-note">
+      📦 Fill in your delivery details below. We will confirm your order via WhatsApp and arrange safe delivery.
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="custName" placeholder="Your full name" />
+      </div>
+      <div class="form-group">
+        <label>Mobile Number *</label>
+        <input type="tel" id="custPhone" placeholder="+91 XXXXX XXXXX" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Product *</label>
+      <select id="custProduct">
+        <option value="">Select product</option>
+        <option value="Vaidam Gir Cow Ghee">Vaidam Gir Cow Ghee</option>
+        <option value="Heritage Green Superblend with Matcha">Heritage Green Superblend with Matcha</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Quantity *</label>
+        <select id="custQty">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Pincode *</label>
+        <input type="text" id="custPin" placeholder="6-digit pincode" maxlength="6" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Full Delivery Address *</label>
+      <textarea id="custAddress" placeholder="House/Flat No., Street, Area, City, State"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Special Instructions (Optional)</label>
+      <input type="text" id="custNote" placeholder="Any special note for your order..." />
+    </div>
+
+    <button class="submit-btn" onclick="sendWhatsApp()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Send Order via WhatsApp
+    </button>
+  </div>
+</div>
+
+<script>
+  // Which WhatsApp number for which product
+  const waNumbers = {
+    'Vaidam Gir Cow Ghee': '917600634798',
+    'Heritage Green Superblend with Matcha': '919909361172',
+    default: '917600634798'
+  };
+
+  function openModal(product) {
+    document.getElementById('orderModal').classList.add('active');
+    if (product) {
+      document.getElementById('custProduct').value = product;
+      document.getElementById('modalProduct').textContent = 'Ordering: ' + product;
+      document.getElementById('modalBadge').textContent = '🛒 ' + product;
+    }
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('orderModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('orderModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function sendWhatsApp() {
+    const name = document.getElementById('custName').value.trim();
+    const phone = document.getElementById('custPhone').value.trim();
+    const product = document.getElementById('custProduct').value;
+    const qty = document.getElementById('custQty').value;
+    const pin = document.getElementById('custPin').value.trim();
+    const address = document.getElementById('custAddress').value.trim();
+    const note = document.getElementById('custNote').value.trim();
+
+    if (!name || !phone || !product || !pin || !address) {
+      alert('Please fill in all required fields (*)');
+      return;
+    }
+
+    if (!/^\d{6}$/.test(pin)) {
+      alert('Please enter a valid 6-digit pincode.');
+      return;
+    }
+
+    const waNum = waNumbers[product] || waNumbers.default;
+
+    const msg = `🛒 *NEW ORDER – Vaidam Enterprise*
+
+👤 *Name:* ${name}
+📱 *Mobile:* ${phone}
+
+📦 *Product:* ${product}
+🔢 *Quantity:* ${qty}
+
+🏠 *Delivery Address:*
+${address}
+📮 Pincode: ${pin}
+${note ? `\n📝 *Note:* ${note}` : ''}
+
+_Order placed via Vaidam Website_`;
+
+    const url = `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+    closeModal();
+  }
+
+  function toggleMenu() {
+    // simple mobile menu
+    const ul = document.querySelector('nav ul');
+    if (ul.style.display === 'flex') {
+      ul.style.display = 'none';
+    } else {
+      ul.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:white;padding:20px 5%;box-shadow:0 8px 24px rgba(0,0,0,0.1);gap:16px;z-index:99';
+    }
+  }
+
+  // Smooth entrance animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.product-card, .why-card, .ing-item, .testi-card, .hero-badge').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
